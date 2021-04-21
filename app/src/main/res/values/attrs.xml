@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="main_background" format="color" />
+    <attr name="main_item_background" format="color" />
+    <attr name="error_color" format="color" />
+    <attr name="text_color" format="color" />
+    <attr name="text_color_secondary" format="color" />
+    <attr name="text_color_tertiary" format="color" />
+    <attr name="controls_accent_style" format="reference" />
+</resources>

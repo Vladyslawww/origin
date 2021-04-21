@@ -1,0 +1,70 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion build_versions.compile_sdk
+    buildToolsVersion build_versions.build_tools
+    dataBinding.enabled true
+    defaultConfig {
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
+    }
+
+    buildTypes {
+        release {}
+        stage {}
+        debug {}
+    }
+
+    sourceSets{
+        androidTest.java.srcDirs += "src/androidTest/kotlin"
+        main.java.srcDirs += "src/main/kotlin"
+        test.java.srcDirs += "src/test/kotlin"
+    }
+
+    compileOptions.sourceCompatibility = JavaVersion.VERSION_1_8
+    compileOptions.targetCompatibility = JavaVersion.VERSION_1_8
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+}
+
+kotlin {
+    androidExtensions {
+        experimental = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+
+    //other
+    implementation deps.other.logger
+
+    //kotlin
+    implementation deps.coroutines.core
+    implementation deps.coroutines.android
+    implementation deps.kotlin.serializeRuntime
+    implementation deps.kotlin.androidExtensions
+    implementation deps.kotlin.reflect
+
+    //arch
+    implementation deps.archComponents.lifecycle
+    implementation deps.archComponents.viewModel
+    implementation deps.archComponents.lifecycleKtx
+
+    //dependency injection
+    implementation deps.di.core
+    implementation deps.di.androidX
+
+    //support
+    implementation deps.support.appcompat
+    implementation deps.support.design
+    implementation deps.support.annotations
+
+
+}

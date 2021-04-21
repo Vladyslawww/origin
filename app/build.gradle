@@ -1,0 +1,176 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+def globalConfiguration = rootProject.extensions.getByName("ext")
+
+android {
+    compileSdkVersion build_versions.compile_sdk
+    buildToolsVersion build_versions.build_tools
+
+    dataBinding.enabled true
+
+    defaultConfig {
+
+        applicationId deps.application_id
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
+        vectorDrawables.useSupportLibrary = true
+
+        versionCode deps.clientVersionMajor * 10000 + deps.clientVersionMinor * 1000 + deps.clientVersionPatch * 100 + deps.clientVersionBuild
+        versionName "${deps.clientVersionMajor}.${deps.clientVersionMinor}.${deps.clientVersionPatch}"
+        multiDexEnabled true
+        applicationVariants.all { variant ->
+            variant.outputs.all {
+                outputFileName = "${variant.name} - ${defaultConfig.versionName}(${defaultConfig.versionCode}).apk"
+            }
+        }
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    sourceSets{
+        androidTest.java.srcDirs += "src/androidTest/kotlin"
+        main.java.srcDirs += "src/main/kotlin"
+        test.java.srcDirs += "src/test/kotlin"
+    }
+
+    buildTypes {
+
+        def ENDPOINT = "ENDPOINT"
+        def API_KEY = "API_KEY"
+
+        release {
+            minifyEnabled true
+            signingConfig signingConfigs.debug
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            //ext.betaDistributionEmailsFilePath = "testers.txt"
+            //ext.betaDistributionReleaseNotes = "etsyclient." + defaultConfig.versionName + "(" + defaultConfig.versionCode + ") (staging)"
+            buildConfigField "String", ENDPOINT, "\"${globalConfiguration['baseEndpointLive']}\""
+            buildConfigField "String", API_KEY, "\"${globalConfiguration['baseApiKeyLive']}\""
+        }
+        stage {
+            applicationIdSuffix ".beta"
+            versionNameSuffix "-beta"
+            signingConfig signingConfigs.debug
+            minifyEnabled true
+            debuggable true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            //ext.betaDistributionEmailsFilePath = "testers.txt"
+            //ext.betaDistributionReleaseNotes = "myclient." + defaultConfig.versionName + "(" + defaultConfig.versionCode + ") (stage)"
+            buildConfigField "String", ENDPOINT, "\"${globalConfiguration['baseEndpointStage']}\""
+            buildConfigField "String", API_KEY, "\"${globalConfiguration['baseApiKeyStage']}\""
+        }
+        debug {
+            signingConfig signingConfigs.debug
+            debuggable true
+            minifyEnabled false
+            //ext.betaDistributionEmailsFilePath = "testers.txt"
+            //ext.betaDistributionReleaseNotes = "myclient." + defaultConfig.versionName + "(" + defaultConfig.versionCode + ") (debug)"
+            buildConfigField "String", ENDPOINT, "\"${globalConfiguration['baseEndpointDev']}\""
+            buildConfigField "String", API_KEY, "\"${globalConfiguration['baseApiKeyDev']}\""
+        }
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+kapt {
+    javacOptions {
+        option("room.incremental", true)
+    }
+}
+
+kotlin {
+    androidExtensions {
+        experimental = true
+    }
+}
+
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //modules
+
+    implementation deps.data
+    implementation deps.domain
+    implementation deps.base
+
+    //dependency injection
+    implementation deps.di.core
+    implementation deps.di.androidX
+    implementation deps.di.conf
+
+    implementation deps.stetho.runtime
+    implementation deps.stetho.http
+
+    //network
+    implementation deps.network.retrofit
+    implementation deps.network.logging
+
+    //support
+    implementation deps.support.appcompat
+    implementation deps.support.design
+    implementation deps.support.annotations
+    implementation deps.support.cardview
+
+    //coil
+    implementation deps.coil.coil
+
+    //kotlin
+    implementation deps.kotlin.androidExtensions
+    implementation deps.kotlin.serializeRuntime
+    implementation deps.kotlin.reflect
+
+    //viewbinding
+    implementation deps.viewbinding.core
+    implementation deps.viewbinding.material
+    implementation deps.viewbinding.recyclerview
+    implementation deps.viewbinding.swipeRefresh
+    implementation deps.viewbinding.appcompat
+    implementation deps.viewbinding.viewPager
+
+    //arch
+    implementation deps.archComponents.lifecycle
+    implementation deps.archComponents.viewModel
+    implementation deps.archComponents.lifecycleKtx
+
+    //paging
+    //implementation deps.pg.paging
+
+    //biometric
+    implementation deps.bio.biometric
+
+    //room
+    implementation deps.db.room
+    implementation deps.db.roomKtx
+    kapt deps.db.roomCompiler
+
+    //skeleton
+    implementation deps.skeleton.layout
+
+    //adapter
+    implementation deps.ui.lastAdapter
+    implementation deps.ui.constraintLayout
+
+    //other
+    implementation deps.other.logger
+
+    //animation
+    implementation deps.animation.lottie
+
+    //leaks
+    debugImplementation deps.other.leakDebug
+    releaseImplementation deps.other.leakRelease
+    stageImplementation deps.other.leakRelease
+
+    testImplementation deps.tests.kotlinTests
+    //testImplementation deps.pg.pagingTests
+    testImplementation deps.tests.mockk
+    testImplementation deps.db.roomTesting
+}

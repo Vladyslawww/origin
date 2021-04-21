@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">My client</string>
+    <string name="tab1">Search</string>
+    <string name="tab2">Saved</string>
+    <string name="title_activity_detail_sub">DetailActivitySub</string>
+    <string name="successfully_removed">Item successfully removed</string>
+    <string name="successfully_saved">Item successfully saved</string>
+    <string name="save_item">Save item</string>
+    <string name="remove_item">Remove item</string>
+    <string name="title">Title:</string>
+    <string name="description">Description:</string>
+    <string name="auth_title">Attention</string>
+    <string name="auth_subtitle">Etsy Authentication</string>
+    <string name="auth_description">Please, authenticate!</string>
+    <string name="error_msg_auth_failed">Authentication failed</string>
+    <string name="error_msg_auth_error">Authentication error, reason: %s</string>
+    <string name="error_msg_no_biometric_hardware">No biometric hardware</string>
+    <string name="error_msg_biometric_hw_unavailable">Biometric hardware unavailable</string>
+    <string name="error_msg_biometric_not_setup">Biometric not setup</string>
+</resources>

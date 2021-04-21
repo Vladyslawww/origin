@@ -1,0 +1,82 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlinx-serialization'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion build_versions.compile_sdk
+    buildToolsVersion build_versions.build_tools
+
+    defaultConfig {
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
+    }
+    buildTypes {
+        release {}
+        stage {}
+        debug {}
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+        encoding "UTF-8"
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    kotlin {
+        androidExtensions {
+            experimental = true
+        }
+    }
+
+    sourceSets{
+        androidTest.java.srcDirs += "src/androidTest/kotlin"
+        main.java.srcDirs += "src/main/kotlin"
+        test.java.srcDirs += "src/test/kotlin"
+    }
+}
+
+dependencies {
+
+    //modules
+    implementation deps.base
+    implementation deps.domain
+
+
+    //network
+    implementation deps.network.retrofit
+    implementation deps.network.moshiconverter
+    implementation deps.network.logging
+
+    //other
+    implementation deps.stetho.http
+
+    //kotlin
+    implementation deps.kotlin.serializeRuntime
+    implementation deps.kotlin.stdlib8
+    implementation deps.coroutines.core
+
+    //dependency injection
+    implementation deps.di.core
+    implementation deps.di.androidX
+    implementation deps.di.conf
+
+    //room
+    implementation deps.db.room
+    implementation deps.db.roomKtx
+    kapt deps.db.roomCompiler
+
+    //tests
+    testRuntimeOnly deps.kotlin.reflect
+    testImplementation deps.tests.kotlinTests
+    testImplementation deps.tests.mockk
+    testImplementation deps.tests.spek
+    testImplementation deps.tests.spekRunner
+    testImplementation deps.tests.junit
+    testImplementation deps.tests.assertj
+    testImplementation deps.tests.mockServer
+}

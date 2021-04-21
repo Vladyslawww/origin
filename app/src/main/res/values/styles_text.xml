@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="RTLAppearances.Primary" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textColor">?attr/text_color</item>
+        <item name="android:textSize">@dimen/font_size_14</item>
+        <item name="android:textAlignment">viewStart</item>
+    </style>
+
+    <!-- Use general text with single line -->
+    <style name="RTLAppearances" parent="TextAppearance.AppCompat.Medium">
+
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:textColor">?attr/text_color</item>
+        <item name="android:textSize">@dimen/font_size_14</item>
+        <item name="android:textAlignment">viewStart</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+
+    <style name="RTLAppearances.Medium" parent="RTLAppearances">
+        <item name="android:textSize">@dimen/font_size_16</item>
+    </style>
+
+    <style name="RTLAppearances.Muted" parent="RTLAppearances">
+        <item name="android:textColor">?text_color_secondary</item>
+    </style>
+
+    <style name="RTLAppearances.Bold" parent="RTLAppearances">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="RTLAppearances.Medium.10" parent="RTLAppearances.Medium">
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="RTLAppearances.Medium.12" parent="RTLAppearances.Medium">
+        <item name="android:textSize">@dimen/font_size_12</item>
+    </style>
+
+    <style name="RTLAppearances.Medium.14" parent="RTLAppearances.Medium">
+        <item name="android:textSize">@dimen/font_size_14</item>
+    </style>
+
+    <style name="RTLAppearances.Medium.16" parent="RTLAppearances.Medium">
+        <item name="android:textSize">@dimen/font_size_16</item>
+    </style>
+
+    <style name="RTLAppearances.Medium.22" parent="RTLAppearances.Medium">
+        <item name="android:textSize">@dimen/font_size_22</item>
+    </style>
+
+    <style name="RTLAppearances.Light" parent="RTLAppearances">
+        <item name="android:textSize">@dimen/font_size_10</item>
+        <item name="android:fontFamily">@font/roboto_regular</item>
+
+    </style>
+
+    <style name="RTLAppearances.Light.12" parent="RTLAppearances.Light">
+        <item name="android:textSize">@dimen/font_size_12</item>
+    </style>
+
+    <style name="RTLAppearances.Light.16" parent="RTLAppearances.Light">
+        <item name="android:textSize">@dimen/font_size_16</item>
+    </style>
+
+    <style name="RTLAppearances.Light.20" parent="RTLAppearances.Light">
+        <item name="android:textSize">@dimen/font_size_20</item>
+    </style>
+
+    <style name="RTLAppearances.12" parent="RTLAppearances">
+        <item name="android:textSize">@dimen/font_size_12</item>
+    </style>
+
+    <style name="RTLAppearances.Light.Secondary">
+        <item name="android:textColor">?text_color_secondary</item>
+    </style>
+
+    <style name="RTLAppearances.Light.Secondary.14">
+        <item name="android:textSize">@dimen/font_size_14</item>
+    </style>
+
+    <style name="RTLAppearances.Light.Secondary.16">
+        <item name="android:textSize">@dimen/font_size_16</item>
+    </style>
+
+    <style name="RTLAppearances.Light.Secondary.18">
+        <item name="android:textSize">@dimen/font_size_18</item>
+    </style>
+
+    <style name="RTLAppearances.Bold.12">
+        <item name="android:textSize">@dimen/font_size_12</item>
+    </style>
+
+    <style name="RTLAppearances.Bold.16">
+        <item name="android:textSize">@dimen/font_size_16</item>
+    </style>
+
+    <style name="RTLAppearances.Bold.14">
+        <item name="android:textSize">@dimen/font_size_14</item>
+    </style>
+
+    <style name="RTLAppearances.Bold.20">
+        <item name="android:textSize">@dimen/font_size_20</item>
+    </style>
+
+    <style name="RTLAppearances.Bold.18">
+        <item name="android:textSize">@dimen/font_size_18</item>
+    </style>
+
+    <style name="RTLAppearances.Bold.22">
+        <item name="android:textSize">@dimen/font_size_22</item>
+    </style>
+
+    <style name="RTLAppearances.Primary.Medium">
+        <item name="android:textSize">@dimen/font_size_16</item>
+    </style>
+
+    <style name="RTLAppearances.Primary.Small">
+        <item name="android:textSize">@dimen/font_size_12</item>
+    </style>
+
+    <style name="RTLAppearances.Secondary" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textColor">?text_color_secondary</item>
+        <item name="android:fontFamily">@font/roboto_regular</item>
+        <item name="android:textSize">@dimen/font_size_14</item>
+        <item name="android:textAlignment">viewStart</item>
+    </style>
+
+    <style name="RTLAppearances.Secondary.Small">
+        <item name="android:textSize">@dimen/font_size_12</item>
+    </style>
+
+    <style name="RTLAppearances.Secondary.16">
+        <item name="android:textSize">@dimen/font_size_16</item>
+    </style>
+
+    <style name="RTLAppearances.Secondary.10">
+        <item name="android:textSize">@dimen/font_size_10</item>
+    </style>
+
+    <style name="RTLAppearances.Secondary.14">
+        <item name="android:textSize">@dimen/font_size_14</item>
+    </style>
+
+    <style name="RTLAppearances.Tertiary" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textColor">?text_color_tertiary</item>
+        <item name="android:fontFamily">@font/roboto_regular</item>
+        <item name="android:textSize">@dimen/font_size_14</item>
+        <item name="android:textAlignment">viewStart</item>
+    </style>
+
+    <style name="RTLAppearances.Tertiary.Small">
+        <item name="android:textSize">@dimen/font_size_12</item>
+    </style>
+
+    <style name="RTLAppearances.Tertiary.16">
+        <item name="android:textSize">@dimen/font_size_16</item>
+    </style>
+
+    <style name="RTLAppearances.Tertiary.10">
+        <item name="android:textSize">@dimen/font_size_10</item>
+    </style>
+
+    <style name="RTLAppearances.Tertiary.14">
+        <item name="android:textSize">@dimen/font_size_14</item>
+    </style>
+
+
+    <style name="TitlePrimaryMutedAppearance" parent="RTLAppearances.Primary">
+        <item name="android:textSize">@dimen/font_size_16</item>
+        <item name="android:textColor">?text_color_secondary</item>
+    </style>
+
+    <style name="TitleSecondaryInverseAppearance" parent="RTLAppearances.Primary">
+        <item name="android:textSize">@dimen/font_size_10</item>
+        <item name="android:textColor">?text_color_secondary</item>
+    </style>
+
+    <style name="MediumPrimaryAppearance" parent="RTLAppearances.Primary">
+        <item name="android:textSize">@dimen/font_size_16</item>
+        <item name="android:textColor">?attr/text_color</item>
+    </style>
+
+    <style name="ExtraSmallMutedSecondaryAppearance" parent="RTLAppearances.Primary">
+        <item name="android:textSize">@dimen/font_size_12</item>
+        <item name="android:textColor">?text_color_secondary</item>
+    </style>
+
+    <style name="SmallSecondaryAppearance" parent="RTLAppearances.Primary">
+        <item name="android:textSize">@dimen/font_size_12</item>
+        <item name="android:textColor">?text_color_secondary</item>
+    </style>
+
+    <style name="DefaultSecondaryAppearance" parent="RTLAppearances.Primary">
+        <item name="android:textSize">@dimen/font_size_14</item>
+        <item name="android:textColor">?text_color_secondary</item>
+    </style>
+
+    <style name="LargeTextPrimaryAppearance" parent="RTLAppearances.Primary">
+        <item name="android:textSize">@dimen/font_size_22</item>
+        <item name="android:textColor">?attr/text_color</item>
+    </style>
+
+    <style name="DefaultPrimaryAppearance" parent="RTLAppearances.Primary">
+        <item name="android:textSize">@dimen/font_size_14</item>
+        <item name="android:textColor">?attr/text_color</item>
+    </style>
+
+    <style name="SmallPrimaryAppearance" parent="RTLAppearances.Primary">
+        <item name="android:textSize">@dimen/font_size_12</item>
+        <item name="android:textColor">?attr/text_color</item>
+    </style>
+
+    <style name="PopupTextAppearance">
+        <item name="android:textSize">@dimen/font_size_14</item>
+        <item name="android:textColor">?attr/text_color</item>
+    </style>
+
+
+    <style name="LinkTextAppearance">
+        <item name="android:textColor">?colorAccent</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">@dimen/font_size_14</item>
+    </style>
+
+    <style name="MediumTitle" parent="RTLAppearances.Secondary">
+        <item name="android:textSize">@dimen/font_size_16</item>
+        <item name="android:paddingBottom">@dimen/margin_default_quarter</item>
+    </style>
+
+    <style name="TextError" parent="RTLAppearances.Secondary">
+        <item name="android:textColor">@color/error</item>
+        <item name="android:textSize">@dimen/font_size_12</item>
+        <item name="android:paddingBottom">@dimen/margin_default_quarter</item>
+        <item name="android:paddingTop">@dimen/margin_size_2</item>
+    </style>
+
+</resources>

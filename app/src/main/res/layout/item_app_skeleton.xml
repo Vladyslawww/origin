@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="item"
+            type="com.holikov.myclient.base.extentions.AppSkeletonItem" />
+    </data>
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/skeleton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="@drawable/drawable_skeleton_corners_card_bg"
+        app:shimmer_auto_start="true">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="@dimen/image_size"
+            android:layout_height="@dimen/image_size"
+            android:layout_gravity="start"
+            android:layout_margin="20dp"
+            android:src="@drawable/vector_skeleton_mask_light" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_gravity="start"
+            android:layout_marginStart="145dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/drawable_skeleton_corners_card" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="start"
+            android:layout_marginStart="145dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/drawable_skeleton_corners_card" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_gravity="start"
+            android:layout_marginStart="145dp"
+            android:layout_marginTop="@dimen/image_size"
+            android:layout_marginEnd="90dp"
+            android:background="@drawable/drawable_skeleton_corners_card" />
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+</layout>
+
+
+

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base application theme. -->
+    <style name="MainThemeLight" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="fontFamily">@font/roboto_medium</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="android:windowBackground">?main_background</item>
+        <item name="android:textColorPrimary">?text_color</item>
+        <item name="android:textColorSecondary">?text_color_secondary</item>
+        <item name="searchViewStyle">@style/SearchViewStyle</item>
+        <item name="actionBarStyle">@style/ToolbarDarkOverflow</item>
+        <item name="android:editTextColor">?colorAccent</item>
+        <item name="android:textColorHint">?text_color_secondary</item>
+        <item name="main_background">@color/bg_color</item>
+        <item name="main_item_background">?colorPrimary</item>
+        <item name="text_color">@color/text_color</item>
+        <item name="text_color_secondary">@color/text_color_secondary</item>
+        <item name="text_color_tertiary">@color/text_color_tertiary</item>
+        <item name="error_color">@color/error</item>
+        <item name="controls_accent_style">@style/MainThemeLight.AccentControl</item>
+        <item name="bottomSheetDialogTheme">@style/AppModalBottomSheet</item>
+        <!-- Global shape attributes -->
+        <item name="shapeAppearanceSmallComponent">@style/AppShapeAppearance.SmallComponent</item>
+        <item name="shapeAppearanceMediumComponent">@style/AppShapeAppearance.MediumComponent</item>
+        <item name="shapeAppearanceLargeComponent">@style/AppShapeAppearance.LargeComponent</item>
+    </style>
+
+    <style name="MainThemeLight.NoActionBar">
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="fontFamily">@font/roboto_medium</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionModeOverlay">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+
+    <style name="MainThemeLight.AccentControl">
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="fontFamily">@font/roboto_medium</item>
+        <item name="colorControlActivated">?colorAccent</item>
+
+    </style>
+
+    <style name="SearchViewStyle" parent="Widget.AppCompat.Light.SearchView">
+        <item name="iconifiedByDefault">false</item>
+        <item name="closeIcon">@drawable/ic_close</item>
+        <item name="searchIcon">@drawable/ic_search_view</item>
+        <item name="queryBackground">@color/transparent</item>
+    </style>
+
+
+    <style name="MainThemeLight.ActionBar.Transparent" parent="MainThemeLight">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="windowActionBarOverlay">true</item>
+        <item name="colorPrimaryDark">@android:color/transparent</item>
+    </style>
+
+    <style name="ToolbarDarkOverflow" parent="MainThemeLight.NoActionBar">
+        <item name="actionMenuTextColor">?attr/main_background</item>
+        <item name="android:textColorSecondary">?attr/main_background</item>
+        <item name="android:textColorPrimary">?attr/main_background</item>
+        <item name="android:textSize">@dimen/toolbar_title_text</item>
+        <item name="android:background">@android:color/transparent</item>
+
+    </style>
+
+
+    <style name="MainThemeLight.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="MainThemeLight.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="ToolbarTitle" parent="@style/TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="AppModalBottomSheet" parent="ThemeOverlay.MaterialComponents.DayNight.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/ModalBottomSheet</item>
+    </style>
+
+    <style name="ModalBottomSheet" parent="Widget.MaterialComponents.BottomSheet.Modal">
+        <item name="backgroundTint">?main_item_background</item>
+        <item name="android:layout_marginStart">@dimen/margin_default_half</item>
+        <item name="android:layout_marginEnd">@dimen/margin_default_half</item>
+    </style>
+
+    <style name="AppShapeAppearance.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/margin_size_20</item>
+    </style>
+
+    <style name="AppShapeAppearance.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/margin_size_20</item>
+    </style>
+
+    <style name="AppShapeAppearance.LargeComponent" parent="ShapeAppearance.MaterialComponents.LargeComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/margin_size_20</item>
+    </style>
+
+</resources>

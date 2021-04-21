@@ -1,0 +1,224 @@
+ext.deps = [:]
+def versions = [:]
+
+def deps = [:]
+
+deps.clientVersionMajor = 1
+deps.clientVersionMinor = 0
+deps.clientVersionPatch = 0
+deps.clientVersionBuild = 0
+
+deps.application_id = "com.holikov.myclient"
+//=============================================== MODULES ===========================================
+
+deps.data = project(':data')
+deps.domain = project(':domain')
+deps.base = project(':base')
+
+
+//============================================== BUILD =============================================
+versions.androidGradlePluginVersion = '3.6.3'
+deps.androidGradlePlugin = "com.android.tools.build:gradle:$versions.androidGradlePluginVersion"
+
+def build_versions = [:]
+build_versions.min_sdk = 23
+build_versions.target_sdk = 30
+build_versions.compile_sdk = 30
+build_versions.build_tools = "30.0.0"
+ext.build_versions = build_versions
+
+//=============================================== SUPPORT ==========================================
+versions.support = "27.1.1"
+def support = [:]
+support.annotations = 'androidx.annotation:annotation:1.1.0'
+support.appcompat = 'androidx.appcompat:appcompat:1.2.0-beta01'
+support.design = 'com.google.android.material:material:1.2.0-alpha06'
+support.cardview = 'androidx.cardview:cardview:1.0.0'
+support.recyclerview = "com.android.support:recyclerview-v7:$versions.support"
+deps.support = support
+
+//============================================= ARCH COMPONENTS ====================================
+versions.arch = '2.2.0'
+def archComponents = [:]
+archComponents.viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.arch"
+archComponents.lifecycle = "androidx.lifecycle:lifecycle-extensions:$versions.arch"
+archComponents.lifecycleKtx = "androidx.lifecycle:lifecycle-runtime-ktx:$versions.arch"
+
+
+deps.archComponents = archComponents
+
+//========================================== View Binding ==========================================
+versions.corbind = '1.5.0'
+
+def viewbinding = [:]
+viewbinding.core = "ru.ldralighieri.corbind:corbind-core:$versions.corbind"
+viewbinding.material =     "ru.ldralighieri.corbind:corbind-material:$versions.corbind"
+viewbinding.recyclerview = "ru.ldralighieri.corbind:corbind-recyclerview:$versions.corbind"
+viewbinding.swipeRefresh = "ru.ldralighieri.corbind:corbind-swiperefreshlayout:$versions.corbind"
+viewbinding.appcompat =    "ru.ldralighieri.corbind:corbind-appcompat:$versions.corbind"
+viewbinding.viewPager =    "ru.ldralighieri.corbind:corbind-viewpager:$versions.corbind"
+deps.viewbinding = viewbinding
+
+//============================================== KOTLIN ============================================
+versions.kotlin = '1.3.61'
+versions.serializeRuntime = '0.13.0'
+def kotlin = [:]
+kotlin.stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jre7:$versions.kotlin"
+kotlin.stdlib8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin"
+kotlin.reflect = "org.jetbrains.kotlin:kotlin-reflect:$versions.kotlin"
+kotlin.test = "org.jetbrains.kotlin:kotlin-test-junit:$versions.kotlin"
+kotlin.gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+kotlin.serialization = "org.jetbrains.kotlin:kotlin-serialization:$versions.kotlin"
+kotlin.serializeRuntime = "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$versions.serializeRuntime"
+kotlin.androidExtensions = 'androidx.core:core-ktx:1.3.0-rc01'
+deps.kotlin = kotlin
+
+versions.coroutines = '1.3.1'
+def coroutines = [:]
+coroutines.core =       "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.coroutines"
+coroutines.android =    "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutines"
+deps.coroutines = coroutines
+
+
+//============================================= SKELETON ==========================================
+def skeleton = [:]
+
+skeleton.layout = "com.facebook.shimmer:shimmer:0.5.0"
+
+deps.skeleton = skeleton
+
+//=============================================== DI ===============================================
+versions.kodein = '6.5.0'
+
+def di = [:]
+di.core = "org.kodein.di:kodein-di-generic-jvm:${versions.kodein}"
+//di.android = "org.kodein.di:kodein-di-framework-android:${versions.kodein}"
+di.androidX = "org.kodein.di:kodein-di-framework-android-x:${versions.kodein}"
+di.conf = "org.kodein.di:kodein-di-conf-jvm:${versions.kodein}"
+
+deps.di = di
+
+//============================================== NETWORK ===========================================
+versions.okHttp = '3.9.1'
+versions.retrofit = '2.6.1'
+
+def network = [:]
+network.okhttp =        "com.squareup.okhttp3:okhttp:$versions.okHttp"
+network.logging =       "com.squareup.okhttp3:logging-interceptor:$versions.okHttp"
+network.retrofit =      "com.squareup.retrofit2:retrofit:$versions.retrofit"
+network.moshiconverter = "com.squareup.retrofit2:converter-moshi:$versions.retrofit"
+deps.network = network
+
+//=============================================== COIL  ============================================
+versions.coilVersion = '0.10.0'
+def coil = [:]
+coil.coil = "io.coil-kt:coil:$versions.coilVersion"
+deps.coil = coil
+
+//============================================== STETHO ============================================
+def stetho = [:]
+stetho.runtime = "com.facebook.stetho:stetho:1.5.0"
+stetho.http = "com.facebook.stetho:stetho-okhttp3:1.5.0"
+deps.stetho = stetho
+
+//================================================ MULTIDEX ==============================================
+
+def multidex = [:]
+multidex.multidex = "com.android.support:multidex:1.0.1"
+deps.multidex = multidex
+
+//================================================ UI ==============================================
+def ui = [:]
+
+ui.constraintLayout = 'androidx.constraintlayout:constraintlayout:1.1.3'
+ui.lastAdapter = 'com.github.nitrico.lastadapter:lastadapter:2.3.0'
+deps.ui = ui
+//============================================== OTHER ============================================
+def other = [:]
+
+other.leakDebug = 'com.squareup.leakcanary:leakcanary-android:1.6.3'
+other.leakRelease = 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.3'
+other.logger = 'com.jakewharton.timber:timber:4.6.1'
+
+deps.other = other
+
+//============================================= Animation ==========================================
+def animation = [:]
+
+versions.lottieVersion = '3.0.1'
+
+animation.lottie = "com.airbnb.android:lottie:$versions.lottieVersion"
+
+deps.animation = animation
+
+//============================================= Room ==========================================
+def db = [:]
+
+versions.roomVersion = '2.2.5'
+
+db.room = "androidx.room:room-runtime:$versions.roomVersion"
+db.roomCompiler = "androidx.room:room-compiler:$versions.roomVersion"
+db.roomKtx = "androidx.room:room-ktx:$versions.roomVersion"
+db.roomTesting = "androidx.room:room-testing:$versions.roomVersion"
+
+deps.db = db
+
+//============================================= Biometric ==========================================
+def bio = [:]
+versions.bioVersion = '1.0.1'
+bio.biometric = "androidx.biometric:biometric:$versions.bioVersion"
+deps.bio = bio
+
+//============================================= Paging ==========================================
+def pg = [:]
+
+versions.pagingVersion = '2.1.2'
+
+pg.paging = "androidx.paging:paging-runtime-ktx:$versions.pagingVersion"
+pg.pagingTests = "androidx.paging:paging-common-ktx:$versions.pagingVersion"
+
+deps.pg = pg
+
+//=============================================== TESTS ============================================
+versions.jUnitVersion = '4.12'
+versions.assertJVersion = '3.8.0'
+versions.mockitoVersion = '2.1.0'
+versions.spek = '2.0.7'
+def tests = [:]
+tests.junit = "junit:junit:$versions.jUnitVersion"
+tests.mockito = "com.nhaarman.mockitokotlin2:mockito-kotlin:$versions.mockitoVersion"
+tests.assertj = "org.assertj:assertj-core:$versions.assertJVersion"
+tests.junitPlugin = "de.mannodermaus.gradle.plugins:android-junit5:1.4.2.0"
+tests.spek = "org.spekframework.spek2:spek-dsl-jvm:$versions.spek"
+tests.spekRunner = "org.spekframework.spek2:spek-runner-junit5:$versions.spek"
+tests.kotlinTests = "org.jetbrains.kotlin:kotlin-test:$versions.kotlin"
+tests.mockk = 'io.mockk:mockk:1.9.3'
+tests.mockServer = 'com.squareup.okhttp3:mockwebserver:4.2.1'
+deps.tests = tests
+
+//============================================ REPOSITORIES ========================================
+static def addRepos(RepositoryHandler handler) {
+    handler.google()
+    handler.jcenter()
+
+    handler.maven { url "https://jitpack.io" }
+    handler.maven { url "https://plugins.gradle.org/m2/" }
+    handler.maven { url 'https://dl.bintray.com/kodein-framework/Kodein-DI/' }
+    handler.maven { url "http://dl.bintray.com/jetbrains/spek" }
+}
+
+ext.addRepos = this.&addRepos
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+ext.deps = deps
+////////////////////////////////////////////////////////////////////////////////////////////////////
+ext {
+    baseEndpointDev = "https://openapi.etsy.com/v2/"
+    baseEndpointStage = "https://openapi.etsy.com/v2/"
+    baseEndpointLive = "https://openapi.etsy.com/v2/"
+
+    baseApiKeyDev = "7n1b2eiidtewp8lk8qbypv0v"
+    baseApiKeyStage = "7n1b2eiidtewp8lk8qbypv0v"
+    baseApiKeyLive = "7n1b2eiidtewp8lk8qbypv0v"
+}
+
