@@ -1,4 +1,6 @@
 package com.holikov.domain.categories.model
 
-class Category {
-}
+data class Category(
+    val name: String,
+    val shortName: String
+)

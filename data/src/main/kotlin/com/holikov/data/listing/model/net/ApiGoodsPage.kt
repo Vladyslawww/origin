@@ -1,6 +1,7 @@
 package com.holikov.data.listing.model.net
 
 import com.squareup.moshi.Json
+import com.holikov.domain.listing.model.GoodsItem
 
 data class ApiGoodsPage(
     @field:Json(name = "results") val results: List<ApiGoodsItem>?,
@@ -21,3 +22,13 @@ data class ApiPagination(
     @field:Json(name = "next_page") val nextPage: Int?
 )
 
+fun ApiGoodsItem.toDomain() =
+    GoodsItem(
+        listingId = listingId,
+        description = description ?: "",
+        title = title ?: "",
+        price = price ?: "",
+        currencyCode = currencyCode ?: "",
+        url = url ?: "",
+        image = null
+    )

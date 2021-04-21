@@ -1,4 +1,7 @@
 package com.holikov.data.categories.model.api
 
-class ApiCategories {
-}
+import com.squareup.moshi.Json
+
+data class ApiCategories(
+    @field:Json(name = "results") val results: List<ApiCategory>? = null
+)
