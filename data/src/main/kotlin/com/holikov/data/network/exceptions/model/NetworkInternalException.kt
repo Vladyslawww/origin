@@ -1,4 +1,3 @@
 package com.holikov.data.network.exceptions.model
 
-class NetworkInternalException {
-}
+class NetworkInternalException(throwable: Throwable): NetworkException(throwable)

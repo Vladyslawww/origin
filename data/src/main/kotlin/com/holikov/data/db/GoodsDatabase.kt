@@ -5,6 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.holikov.data.listing.GoodsDao
+import com.holikov.data.listing.model.db.GoodsItemEntity
 
 
 @Database(

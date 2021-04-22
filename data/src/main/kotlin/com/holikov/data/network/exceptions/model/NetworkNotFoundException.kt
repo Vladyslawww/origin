@@ -1,4 +1,3 @@
 package com.holikov.data.network.exceptions.model
 
-class NetworkNotFoundException {
-}
+class NetworkNotFoundException(throwable: Throwable): NetworkException(throwable)

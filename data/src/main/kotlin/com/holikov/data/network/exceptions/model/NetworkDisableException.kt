@@ -1,4 +1,3 @@
 package com.holikov.data.network.exceptions.model
 
-class NetworkDisableException {
-}
+class NetworkDisableException(exception: Throwable): NetworkException(exception)

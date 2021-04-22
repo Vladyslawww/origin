@@ -10,8 +10,9 @@ data class ApiImageUrls(
     @field:Json(name = "listing_id") val listingId: Int,
     @field:Json(name = "url_570xN") val medium: String,
     @field:Json(name = "url_170x135") val low: String,
-    @field:Json(name = "fullxfull") val original: String
+    @field:Json(name = "url_fullxfull") val original: String
 ) {
+
 
     fun get(quality: Quality) =
         when(quality) {
@@ -24,4 +25,3 @@ data class ApiImageUrls(
         LOW, MEDIUM, HIGH
     }
 }
-

@@ -23,3 +23,4 @@ val domainModules = Kodein.Module("domainModules") {
         bind<IsSavedUseCase>() with singleton { IsSavedUseCaseImpl(instance()) }
         bind<RemoteItemUseCase>() with singleton { RemoteItemUseCaseImpl(instance()) }
     }
+}

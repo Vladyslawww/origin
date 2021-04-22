@@ -1,4 +1,3 @@
 package com.holikov.data.network.exceptions.model
 
-class NotAuthorizedException {
-}
+class NotAuthorizedException(cause: Throwable): NetworkException(cause)

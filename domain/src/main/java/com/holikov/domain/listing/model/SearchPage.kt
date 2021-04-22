@@ -1,4 +1,6 @@
 package com.holikov.domain.listing.model
 
-class SearchPage {
-}
+data class SearchPage(
+    val results: List<GoodsItem>,
+    val nextPage: Int?
+)
