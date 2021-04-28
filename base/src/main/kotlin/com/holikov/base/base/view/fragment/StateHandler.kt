@@ -1,4 +1,5 @@
 package com.holikov.base.base.view.fragment
 
-interface StateHandler {
+interface StateHandler<in T> {
+    fun onStateChanged(state: T)
 }

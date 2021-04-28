@@ -1,4 +1,6 @@
 package com.holikov.base.base.viewmodel
 
-class ProgressEvent {
+sealed class ProgressEvent {
+    object Show : ProgressEvent()
+    object Hide : ProgressEvent()
 }
