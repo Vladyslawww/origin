@@ -25,18 +25,18 @@ class ConnectionLiveData(context: Context) : LiveData<Boolean>() {
         super.onActive()
         when {
             Build.VERSION.SDK_INT >= Build.VERSION_CODES.N -> nNetworkAvailableRequest()
-            Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP -> lollipopNetworkAvailableRequest()
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.M -> mNetworkAvailableRequest()
         }
     }
 
     override fun onInactive() {
         super.onInactive()
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
             connectivityManager.unregisterNetworkCallback(connectivityManagerCallback)
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    private fun lollipopNetworkAvailableRequest() {
+    @TargetApi(Build.VERSION_CODES.M)
+    private fun mNetworkAvailableRequest() {
         val builder = NetworkRequest.Builder()
             .addTransportType(android.net.NetworkCapabilities.TRANSPORT_CELLULAR)
             .addTransportType(android.net.NetworkCapabilities.TRANSPORT_WIFI)
@@ -51,16 +51,16 @@ class ConnectionLiveData(context: Context) : LiveData<Boolean>() {
     }
 
     private fun getConnectivityManagerCallback(): ConnectivityManager.NetworkCallback {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             connectivityManagerCallback = object : ConnectivityManager.NetworkCallback() {
-                override fun onAvailable(network: Network?) {
+                override fun onAvailable(network: Network) {
                     if (!isConnected) {
                         isConnected = true
                         postValue(true)
                     }
                 }
 
-                override fun onLost(network: Network?) {
+                override fun onLost(network: Network) {
                     if (isConnected) {
                         isConnected = false
                         postValue(false)
@@ -69,6 +69,6 @@ class ConnectionLiveData(context: Context) : LiveData<Boolean>() {
             }
             return connectivityManagerCallback
         } else
-            throw IllegalAccessError("SDK version has to be >= ${Build.VERSION_CODES.LOLLIPOP}")
+            throw IllegalAccessError("SDK version has to be >= ${Build.VERSION_CODES.M}")
     }
 }
