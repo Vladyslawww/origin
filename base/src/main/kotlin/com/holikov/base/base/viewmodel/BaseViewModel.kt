@@ -49,26 +49,20 @@ abstract class BaseStatelessViewModel : ViewModel(), BaseViewModel {
         return viewModelScope.launch(handler, block = block)
     }
 
-    protected fun launchWithProgressOn(
-        onStart: () -> Unit = { showProgress() },
-        block: suspend CoroutineScope.() -> Unit
-    ): Job {
+    protected fun launchWithProgressOn(onStart: () -> Unit = { showProgress() },
+                                       block: suspend CoroutineScope.() -> Unit): Job {
         onStart.invoke()
         return viewModelScope.launch(handler, block = block).hideProgress()
     }
 
-    protected fun launchWithProgresable(withProgress: Boolean, block: suspend () -> Unit): Job {
+    protected fun launchWithProgressable(withProgress: Boolean, block: suspend () -> Unit): Job {
         return if (withProgress) launchWithProgressOn { block.invoke() }
         else launchOn { block.invoke() }
     }
 
     protected open suspend fun <T> withProgressSuspend(function: suspend () -> T) {
         showProgress()
-        try {
-            function
-        } finally {
-            hideProgress()
-        }
+        try { function() } finally { hideProgress() }
     }
 
     protected open fun showProgress() = progressChannel.postValue(ProgressEvent.Show)
@@ -86,9 +80,6 @@ abstract class BaseStatelessViewModel : ViewModel(), BaseViewModel {
     }
 
     private fun Job.onComplete(completionHandler: CompletionHandler): Job {
-        return this@onComplete.also {
-            invokeOnCompletion { completionHandler.invoke(it) }
-        }
+        return this@onComplete.also { invokeOnCompletion { completionHandler.invoke(it) } }
     }
 }
-

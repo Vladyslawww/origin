@@ -12,6 +12,5 @@ interface FragmentLifeCycleListener {
     fun postCreateView(fragment: Fragment, view: View) {}
 
     fun preDestroyView(fragment: Fragment, view: View) {}
-    fun postDestroyView(fragment: Fragment)
-
+    fun postDestroyView(fragment: Fragment) {}
 }
