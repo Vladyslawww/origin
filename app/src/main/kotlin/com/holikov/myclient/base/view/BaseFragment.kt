@@ -1,5 +1,6 @@
 package com.holikov.myclient.base.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -22,6 +23,7 @@ import org.kodein.di.generic.instance
 import retrofit2.http.Body
 import timber.log.Timber
 import com.holikov.base.base.viewmodel.BaseViewModel
+import com.holikov.base.base.viewmodel.ProgressEvent
 
 abstract class BaseFragment<in ST : BaseViewState, out VM : BaseViewModel, out NR : BaseNavigator> : InjectionFragment(), StateHandler<ST> {
 
@@ -83,8 +85,43 @@ abstract class BaseFragment<in ST : BaseViewState, out VM : BaseViewModel, out N
         Timber.v("onDestroy ${javaClass.simpleName}")
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        lifecycleListeners.forEach { it.onActivityResult(requestCode, resultCode, data) }
+    }
+
+    protected fun addLifecycleListener(lifecycleListener: FragmentLifeCycleListener) {
+        lifecycleListeners.add(lifecycleListener)
+    }
+
+    protected fun removeLifecycleListener(lifecycleListener: FragmentLifeCycleListener) {
+        lifecycleListeners.remove(lifecycleListener)
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    private fun subscribe() {
+
+        observe((activity as BaseActivity).connectionLiveData) { connected ->
+            if (connected && isResumed) viewModel.onConnectionEstablished()
+        }
+
+        observe(viewModel.errorsStream) {
+            compositeExceptionDispatcher.dispatch(exceptionHandler.propagate(it))
+        }
+
+        observe(viewModel.progressChannel) {
+            when (it) {
+                ProgressEvent.Show -> showProgress()
+                ProgressEvent.Hide -> hideProgress()
+            }
+        }
+
+        observe(viewModel.liveState) { onStateChanged(it as ST) }
+    }
 
 
-
+    protected open fun getExceptionDispatcher() = compositeExceptionDispatcher
+    protected open fun showProgress() {}
+    protected open fun hideProgress() {}
 
 }
