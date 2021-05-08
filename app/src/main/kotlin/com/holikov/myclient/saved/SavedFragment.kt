@@ -25,4 +25,3 @@ internal class SavedFragment : BaseFragment<StateSaved, SavedViewModel, SavedNav
     }
 
 }
-}
