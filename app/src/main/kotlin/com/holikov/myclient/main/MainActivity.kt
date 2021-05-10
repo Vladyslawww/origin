@@ -1,12 +1,11 @@
 package com.holikov.myclient.main
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import com.holikov.myclient.R
+import com.holikov.myclient.base.view.BaseActivity
+import com.holikov.myclient.splash.SplashFragment
 
-class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-    }
+class MainActivity : BaseActivity() {
+    override val isMainRoot = true
+    override val layoutResId: Int get() = R.layout.activity_main
+    override fun start() = manager.get().go(fragment = SplashFragment())
 }
