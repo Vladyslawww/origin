@@ -9,12 +9,12 @@
         android:id="@+id/savedItems"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layoutAnimation="@anim/item_animation_fall_down"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layoutAnimation="@anim/layout_animation_fall_down"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/item_app_skeleton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
