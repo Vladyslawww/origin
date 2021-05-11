@@ -20,7 +20,7 @@ interface GoodsDao {
     @Query("SELECT * FROM goods WHERE listing_id = :id")
     suspend fun getItem(id: Long): List<GoodsItemEntity>
 
-    @Query("DELETE * FROM goods WHERE listing_id = :id")
+    @Query("DELETE FROM goods WHERE listing_id = :id")
     suspend fun deleteById(id: Long)
 
     @Query("SELECT * FROM goods WHERE description LIKE :query OR title LIKE :query OR currency_code LIKE :query OR price LIKE :query ORDER BY timestamp ASC")
