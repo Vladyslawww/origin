@@ -7,18 +7,13 @@ import android.provider.Settings
 import com.holikov.domain.AppInfoProvider
 
 class AppInfoProviderImpl(context: Context) : AppInfoProvider {
-
     @SuppressLint("HardwareIds")
-    private val androidIdVal = Settings.Secure.getString(
-        context.contentResolver,
-        Settings.Secure.ANDROID_ID
-    )
+    private val androidIdVal = Settings.Secure.getString(context.contentResolver,
+        Settings.Secure.ANDROID_ID)
     private val manufacturer = Build.MANUFACTURER
     private val model = Build.MODEL
     private val deviceNameVal = if (model.startsWith(
-            manufacturer
-        )
-    ) model else "$manufacturer, $model"
+            manufacturer)) model else "$manufacturer $model"
 
     override val androidId: String = androidIdVal
     override val deviceName: String = deviceNameVal
@@ -31,4 +26,6 @@ class AppInfoProviderImpl(context: Context) : AppInfoProvider {
     override val endpoint: String = BuildConfig.ENDPOINT
     override val apiKey: String = BuildConfig.API_KEY
     override val appName: String = context.getString(R.string.app_name)
+
+
 }
