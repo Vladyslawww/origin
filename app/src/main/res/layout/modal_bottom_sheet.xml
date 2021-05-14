@@ -13,8 +13,8 @@
         android:foreground="?selectableItemBackground"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -32,12 +32,12 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="@dimen/margin_default_double"
-            android:text="Bottom Sheet"
+            android:text="@string/bottom_sheet"
             android:textAppearance="@style/RTLAppearances.Medium.16"
             app:layout_constraintBottom_toBottomOf="@+id/actionIcon"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/actionIcon"
-            app:layout_constraintTop_toTopOf="@id/actionIcon" />
+            app:layout_constraintStart_toEndOf="@+id/actionIcon"
+            app:layout_constraintTop_toTopOf="@+id/actionIcon" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -49,19 +49,19 @@
         android:layout_marginBottom="@dimen/margin_default_double"
         android:background="@drawable/drawable_skeleton_corners_card_bg"
         android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:shimmer_auto_start="true">
 
-        <view
+        <View
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginStart="@dimen/margin_default_double"
             android:layout_marginTop="17dp"
             android:background="@drawable/drawable_skeleton_corners_card" />
 
-        <view
+        <View
             android:layout_width="130dp"
             android:layout_height="24dp"
             android:layout_marginStart="@dimen/margin_size_88"
@@ -69,5 +69,6 @@
             android:background="@drawable/drawable_skeleton_corners_card" />
 
     </com.facebook.shimmer.ShimmerFrameLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

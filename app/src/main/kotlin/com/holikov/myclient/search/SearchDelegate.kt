@@ -47,12 +47,12 @@ class SearchDelegate : ViewDelegate() {
         searchResults.clear()
         searchResults.clearPaging(attacher)
     }
-
-    private fun LastAdapter.setup() = apply {
-        map<AppSkeletonItem>(R.layout.item_app_skeleton)
-        map<AppGoodsItem, ItemAppSearchResultBinding>(R.layout.item_app_search_result) {
-            onClick { it.binding.item?.run(saveRequest::postValue) }
-        }
+    
+private fun LastAdapter.setup() = apply {
+    map<AppSkeletonItem>(R.layout.item_app_skeleton)
+    map<AppGoodsItem, ItemAppSearchResultBinding>(R.layout.item_app_search_result) {
+        onClick { it.binding.item?.listingId?.run(details::postValue) }
+        onLongClick { it.binding.item?.run(saveRequest::postValue) }
     }
-
+}
 }

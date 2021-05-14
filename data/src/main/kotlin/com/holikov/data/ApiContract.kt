@@ -3,7 +3,7 @@ package com.holikov.data
 object ApiContract {
 
     /** Taxonomy api
-     * @see com.erzhanov.etsyclient.data.categories.TaxonomyApi for more details
+     * @see com.holikov.data.categories.TaxonomyApi for more details
      */
     object Taxonomy {
         private const val TAXONOMY = "taxonomy"
@@ -11,7 +11,7 @@ object ApiContract {
     }
 
     /** Listings api
-     * @see com.erzhanov.etsyclient.data.listing.ListingsApi for more details
+     * @see com.holikov.data.listing.ListingsApi for more details
      */
     object Listings {
         private const val LISTINGS = "listings"

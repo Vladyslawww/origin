@@ -17,4 +17,5 @@
     <string name="error_msg_no_biometric_hardware">No biometric hardware</string>
     <string name="error_msg_biometric_hw_unavailable">Biometric hardware unavailable</string>
     <string name="error_msg_biometric_not_setup">Biometric not setup</string>
+    <string name="bottom_sheet">Bottom Sheet</string>
 </resources>

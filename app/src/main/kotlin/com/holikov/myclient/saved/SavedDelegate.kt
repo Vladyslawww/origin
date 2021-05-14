@@ -41,13 +41,12 @@ class SavedDelegate : ViewDelegate() {
     private fun LastAdapter.setup() = apply {
         map<AppSkeletonItem>(R.layout.item_app_skeleton)
         map<AppGoodsItem, ItemAppSearchResultBinding>(R.layout.item_app_search_result) {
-            onClick { it.binding.item?.listingId?.run { details::postValue } }
-            onLongClick { it.binding.item?.run { deleteRequest::postValue } }
+            onClick { it.binding.item?.listingId?.run(details::postValue) }
+            onLongClick { it.binding.item?.run(deleteRequest::postValue) }
         }
     }
 
     companion object {
-
         const val ENTITY_ID = "entity_id"
         const val REQUEST_CODE = 2222
     }

@@ -33,4 +33,5 @@ internal class DetailsFragment : BaseFragment<StateDetail, DetailsViewModel, Det
         fun search(id: Long) = instance(DetailsArgs(id, DetailFlow.FROM_SEARCH))
         fun saved(id: Long) = instance(DetailsArgs(id, DetailFlow.FROM_SAVED))
     }
+
 }

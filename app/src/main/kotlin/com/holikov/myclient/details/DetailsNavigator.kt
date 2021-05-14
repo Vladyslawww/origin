@@ -9,4 +9,3 @@ interface DetailsNavigator: BaseNavigator
 internal class DetailsNavigatorImpl: DetailsNavigator {
     override val manager = AtomicReference<FragmentManager>()
 }
-

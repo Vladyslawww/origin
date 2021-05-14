@@ -70,7 +70,7 @@ abstract class BaseBottomSheetFragment<in ST : BaseViewState, out VM : BaseViewM
         observe(viewModel.progressChannel) {
             when (it) {
                 ProgressEvent.Show -> showProgress()
-                ProgressEvent.Hide -> hideProgres()
+                ProgressEvent.Hide -> hideProgress()
             }
         }
 
@@ -79,5 +79,5 @@ abstract class BaseBottomSheetFragment<in ST : BaseViewState, out VM : BaseViewM
 
     protected open fun getExceptionDispatcher() = compositeExceptionDispatcher
     protected open fun showProgress() {}
-    protected open fun hideProgres() {}
+    protected open fun hideProgress() {}
 }

@@ -10,6 +10,7 @@ import com.holikov.domain.listing.usecases.RemoteItemUseCase
 import com.holikov.domain.listing.usecases.RemoveItemUseCase
 import com.holikov.domain.listing.usecases.SaveItemUseCase
 import com.holikov.myclient.base.viewmodel.BaseViewModelImpl
+import com.holikov.myclient.details.ActionDetail.*
 import com.holikov.myclient.search.model.AppGoodsItem
 import com.holikov.myclient.search.model.toApp
 import com.holikov.myclient.search.model.toDomain
@@ -36,37 +37,35 @@ internal class DetailsViewModelImpl(
         if (state.noState) loadData()
     }
 
+
     override fun onLoadData() {
         launchOn {
             val isSaved = isSavedUseCase.saved()
             remoteItemUseCase.get(itemId, isSaved)?.run {
-                sendAction(ActionDetail.ItemLoaded(isSaved.not(), this.mapItem(GoodsItem::toApp)))
-            } ?: run { sendAction(ActionDetail.DataLoadFailure) }
+                sendAction(ItemLoaded(isSaved.not(), this.mapItem(GoodsItem::toApp)))
+            } ?: run { sendAction(DataLoadFailure) }
         }
     }
 
     override fun onReduceState(action: ActionDetail) =
         when (action) {
-            is ActionDetail.ItemLoaded -> state.copy(
-                shouldSave = action.shouldSave,
-                item = action.item
-            )
-            is ActionDetail.ItemRemoved -> state.copy(shouldSave = true)
-            is ActionDetail.ItemSaved -> state.copy(shouldSave = false)
+            is ItemLoaded -> state.copy(shouldSave = action.shouldSave, item = action.item)
+            is ItemRemoved -> state.copy(shouldSave = true)
+            is ItemSaved -> state.copy(shouldSave = false)
             else -> throw IllegalStateException("Illegal action")
         }
 
     override fun remove() {
         launchOn {
             removeItemUseCase.remove(state.item.listingId)
-            sendAction(ActionDetail.ItemRemoved)
+            sendAction(ItemRemoved)
         }
     }
 
     override fun save() {
         launchOn {
             saveItemUseCase.save(state.item.mapItem(AppGoodsItem::toDomain))
-            sendAction(ActionDetail.ItemSaved)
+            sendAction(ItemSaved)
         }
     }
 
@@ -77,20 +76,16 @@ internal class DetailsViewModelImpl(
             DetailFlow.FROM_SAVED -> true
             DetailFlow.FROM_SEARCH -> isSaved(itemId)
         }
+
 }
 
 internal sealed class ActionDetail : BaseAction {
-
     data class ItemLoaded(val shouldSave: Boolean, val item: AppGoodsItem) : ActionDetail()
     object ItemSaved : ActionDetail()
     object ItemRemoved : ActionDetail()
     object DataLoadFailure : ActionDetail()
 }
 
-internal data class StateDetail(
-    val shouldSave: Boolean = false,
-    val item: AppGoodsItem = AppGoodsItem.empty()
-) :
-    BaseViewState {
+internal data class StateDetail(val shouldSave: Boolean = false, val item: AppGoodsItem = AppGoodsItem.empty()) : BaseViewState {
     val noState = item.listingId <= 0
 }
