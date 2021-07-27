@@ -14,15 +14,15 @@ data class ApiGoodsItem(
     @field:Json(name = "title") val title: String?,
     @field:Json(name = "price") val price: String?,
     @field:Json(name = "url") val url: String?,
-    @field:Json(name = "currency_code") val currencyCode: String?
-
+    @field:Json(name = "currency_code") val currencyCode: String?,
+    @field:Json(name = "Images") val images: List<ApiImageUrls>?
 )
 
 data class ApiPagination(
     @field:Json(name = "next_page") val nextPage: Int?
 )
 
-fun ApiGoodsItem.toDomain() =
+fun ApiGoodsItem.toDomain(quality: ApiImageUrls.Quality) =
     GoodsItem(
         listingId = listingId,
         description = description ?: "",
@@ -30,5 +30,5 @@ fun ApiGoodsItem.toDomain() =
         price = price ?: "",
         currencyCode = currencyCode ?: "",
         url = url ?: "",
-        image = null
+        image = images?.firstOrNull()?.get(quality)
     )

@@ -1,5 +1,7 @@
 package com.holikov.data
 
+import android.provider.MediaStore
+
 object ApiContract {
 
     /** Taxonomy api
@@ -18,8 +20,9 @@ object ApiContract {
 
         const val ACTIVE_ITEMS = "$LISTINGS/active"
         const val GET_ITEM = "$LISTINGS/{listing_id}"
-        const val IMAGES_BY_ID = "$LISTINGS/{listing_id}/images"
         const val PAGE_SIZE = 15
+        const val INCLUDE_IMAGE_VALUE = "Images:1:0"
+
     }
 
 }

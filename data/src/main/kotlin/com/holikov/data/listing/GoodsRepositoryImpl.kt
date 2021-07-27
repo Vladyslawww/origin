@@ -7,6 +7,7 @@ import com.holikov.data.listing.model.db.toDomain
 import com.holikov.data.listing.model.db.toEntity
 import com.holikov.data.listing.model.net.ApiGoodsItem
 import com.holikov.data.listing.model.net.ApiImageUrls
+import com.holikov.data.listing.model.net.ApiImages
 import com.holikov.data.listing.model.net.toDomain
 import com.holikov.domain.listing.GoodsRepository
 import com.holikov.domain.listing.model.GoodsItem
@@ -21,8 +22,16 @@ internal class GoodsRepositoryImpl(
     private val remoteGoodsDataStore: RemoteGoodsDataStore
 ) : GoodsRepository {
 
-    override suspend fun remoteSearch(page: Int, categoryName: String?, keywords: String?): SearchPage {
-        val apiPage = remoteGoodsDataStore.activeItems(page = page, categoryName = categoryName, keywords = keywords.apiQuery())
+    override suspend fun remoteSearch(
+        page: Int,
+        categoryName: String?,
+        keywords: String?
+    ): SearchPage {
+        val apiPage = remoteGoodsDataStore.activeItems(
+            page = page,
+            categoryName = categoryName,
+            keywords = keywords.apiQuery()
+        )
         return SearchPage(
             nextPage = apiPage?.pagination?.nextPage,
             results = apiPage?.results.process(ApiImageUrls.Quality.MEDIUM)
@@ -30,7 +39,9 @@ internal class GoodsRepositoryImpl(
     }
 
     override suspend fun remoteItem(listingId: Long): GoodsItem? {
-        val item = remoteGoodsDataStore.getItem(listingId)?.results.process(ApiImageUrls.Quality.HIGH).firstOrNull()
+        val item =
+            remoteGoodsDataStore.getItem(listingId)?.results.process(ApiImageUrls.Quality.HIGH)
+                .firstOrNull()
         return item?.copy(isSaved = isSaved(listingId))
     }
 
@@ -46,15 +57,14 @@ internal class GoodsRepositoryImpl(
     override suspend fun update(good: GoodsItem) =
         localGoodsDataStore.update(good.mapItem(GoodsItem::toEntity))
 
-    override fun savedFlow() = localGoodsDataStore.getAll().map { it.mapList(GoodsItemEntity::toDomain) }
+    override fun savedFlow() =
+        localGoodsDataStore.getAll().map { it.mapList(GoodsItemEntity::toDomain) }
+
     override suspend fun delete(listingId: Long) = localGoodsDataStore.deleteById(listingId)
     override suspend fun delete() = localGoodsDataStore.deleteAll()
 
     private suspend fun List<ApiGoodsItem>?.process(quality: ApiImageUrls.Quality) =
-        mapList(ApiGoodsItem::toDomain).map { it.copy(image = getImageUrl(it.listingId, quality)) }
-
-    private suspend fun getImageUrl(listingId: Long, quality: ApiImageUrls.Quality) =
-        remoteGoodsDataStore.getImages(listingId = listingId)?.images?.firstOrNull()?.get(quality)
+        mapList { it.toDomain(quality) }
 
     private fun String?.apiQuery() = if (this?.isEmpty() == true) null else this
 }
